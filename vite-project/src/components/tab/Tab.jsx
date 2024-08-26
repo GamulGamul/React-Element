@@ -1,7 +1,6 @@
-import { useState } from "react";
 // import { TabWraper } from "./TabsCss.js";
-import TabList from "./TabList.jsx";
-import TabContent from "./TabContent.jsx";
+import TabDetail from "./TabDetail.jsx";
+// import TabContent from "./TabContent.jsx";
 import styled from "@emotion/styled";
 
 const TabWraper = styled.div`
@@ -28,36 +27,29 @@ const TabWraper = styled.div`
   }
 `;
 
-const tabs = [
+const tabList = [
   {
     id: "tab1",
-    label: "Tab 1",
+    title: "첫번째",
     content: "Content 1",
   },
   {
     id: "tab2",
-    label: "Tab 2",
+    title: "두번째",
     content: "Content 2",
   },
   {
     id: "tab3",
-    label: "Tab 3",
+    title: "세번째",
     content: "Content 3",
   },
 ];
 
-const Tabs = () => {
-  const [ActiveTabs, setActiveTabs] = useState(tabs[0].id);
-
+const Tab = () => {
   return (
     <TabWraper>
-      <TabList
-        tabs={tabs}
-        ActiveTabs={ActiveTabs}
-        setActiveTabs={setActiveTabs}
-      />
-      <TabContent tabs={tabs} ActiveTabs={ActiveTabs} />
+      <TabDetail tabList={tabList} />
     </TabWraper>
   );
 };
-export default Tabs;
+export default Tab;
