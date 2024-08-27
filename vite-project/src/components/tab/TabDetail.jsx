@@ -6,9 +6,9 @@ const TabList = ({ tabList, defaultIndex = 0 }) => {
 
   const tabActiveHandle = (index) => setTabIndex(index);
 
-  useEffect(() => {
-    console.log(tabIndex);
-  }, [tabIndex]);
+  // useEffect(() => {
+  //   console.log(tabIndex);
+  // }, [tabIndex]);
 
   return (
     <>
