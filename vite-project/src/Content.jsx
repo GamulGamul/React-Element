@@ -1,11 +1,19 @@
-import Tab from "./components/tab/Tab";
+import SelectData from "./components/select/SelectData";
+import TabData from "./components/tab/TabData";
+import styled from "@emotion/styled";
+const ContentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Content = () => {
   return (
-    <>
-      <h1>콘텐츠 영역</h1>
-      <Tab />
-    </>
+    <ContentWrap>
+      <h2>Tab</h2>
+      <TabData />
+      <h2>Select</h2>
+      <SelectData />
+    </ContentWrap>
   );
 };
 export default Content;

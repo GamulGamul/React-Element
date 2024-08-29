@@ -1,55 +1,73 @@
-// import { TabWraper } from "./TabsCss.js";
-import TabDetail from "./TabDetail.jsx";
-// import TabContent from "./TabContent.jsx";
+import { useState, useEffect } from "react";
+import classnames from "classnames";
 import styled from "@emotion/styled";
 
-const TabWraper = styled.div`
-  color: #222;
+const Tab = ({ tabList, defaultIndex = 0 }) => {
+  const [tabIndex, setTabIndex] = useState(defaultIndex);
 
-  .tab-list-wrap {
-    display: flex;
-    .tab-list {
-      &.active {
-        button {
-          background-color: red;
+  const tabActiveHandle = (index) => setTabIndex(index);
+
+  // useEffect(() => {
+  //   console.log(tabIndex);
+  // }, [tabIndex]);
+
+  const Tab = styled.div`
+    color: #222;
+    .tab-list-wrap {
+      display: flex;
+      .tab-list {
+        &.active {
+          button {
+            background-color: red;
+          }
         }
       }
     }
-  }
 
-  .tab-content-wrap {
-    .tab-content {
-      display: none;
-      &.active {
-        display: block;
+    .tab-content-wrap {
+      .tab-content {
+        display: none;
+        &.active {
+          display: block;
+        }
       }
     }
-  }
-`;
+  `;
 
-const tabList = [
-  {
-    id: "tab1",
-    title: "첫번째",
-    content: "Content 1",
-  },
-  {
-    id: "tab2",
-    title: "두번째",
-    content: "Content 2",
-  },
-  {
-    id: "tab3",
-    title: "세번째",
-    content: "Content 3",
-  },
-];
-
-const Tab = () => {
   return (
-    <TabWraper>
-      <TabDetail tabList={tabList} />
-    </TabWraper>
+    <Tab>
+      <ul className="tab-list-wrap" role="tablist">
+        {tabList.map((tab, index) => (
+          <li
+            key={tab.id}
+            className={classnames("tab-list", { active: index === tabIndex })}
+            role="tab"
+            aria-selected={index === tabIndex}
+            aria-controls={`${index}-content`}
+          >
+            <button type="button" onClick={() => tabActiveHandle(index)}>
+              {tab.title}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="tab-content-wrap">
+        {tabList.map((tab, index) => (
+          <div
+            key={tab.id}
+            id={`${tab.id}-content`}
+            className={classnames("tab-content", {
+              active: index === tabIndex,
+            })}
+            role="tabpanel"
+            aria-labelledby={tab.id}
+          >
+            {tab.content}
+          </div>
+        ))}
+      </div>
+    </Tab>
   );
 };
+
 export default Tab;
