@@ -34,6 +34,7 @@ const Select = ({ selectList }) => {
   }, []);
 
   const Select = styled.div`
+    position: relative;
     width: 200px;
     button {
       width: 100%;
@@ -60,10 +61,14 @@ const Select = ({ selectList }) => {
     }
 
     .select-option {
+      position: absolute;
+      top: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
 
       .option-list {
+        background-color: #fff;
         &.active {
           color: red;
         }
