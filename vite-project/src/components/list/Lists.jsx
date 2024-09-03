@@ -3,11 +3,11 @@ import List from "./List";
 import { useEffect, useState } from "react";
 
 const Lists = ({ thumList }) => {
-  const [limit, setLimit] = useState();
+  const PC = 8;
+  const TABLET = 4;
+  const [limit, setLimit] = useState(PC);
 
   const getLimit = () => {
-    const PC = 8;
-    const TABLET = 6;
     const width = window.innerWidth;
 
     if (width < 1200) {
