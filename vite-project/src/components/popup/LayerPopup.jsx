@@ -49,7 +49,6 @@ const Modal = ({ title, open, onClose, showCloseBtn = true }) => {
 
   return (
     <>
-      {console.log(`${open}`)}
       <LayerPopupWrap open={open}>
         <Dimmed onClose={onClose} />
         <LayerPopup>
