@@ -1,5 +1,5 @@
 import Slide from "./Slide";
-import slideImg from "../../assets/thum_images.jpg";
+import slideImg from "../../assets/slide1.jpg";
 
 const slideList = [
   {
