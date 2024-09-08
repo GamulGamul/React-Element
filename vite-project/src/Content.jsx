@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import LayerPopup from "./components/popup/LayerPopup";
 import usePopup from "./components/customHook/usePopup"; //popup 커스텀 훅
 import SlideData from "./components/slide/SlideData";
+import FormData from "./components/form/FormData";
+
 const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,6 +18,8 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>Form</h2>
+      <FormData />
       <h2>swiper slide</h2>
       <SlideData />
       <h2>Tab</h2>
