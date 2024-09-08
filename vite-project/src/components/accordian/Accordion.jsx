@@ -13,7 +13,10 @@ const Accordion = ({ list }) => {
 
   return (
     <div>
-      <button onClick={toggleAccordion}>{title}</button>
+      {/* 버튼내 내용이없다면 aria-label="내용" 추가 */}
+      <button onClick={toggleAccordion} aria-expanded={isOpen}>
+        {title}
+      </button>
       {isOpen && <div>{content}</div>}
     </div>
   );
