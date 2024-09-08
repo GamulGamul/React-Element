@@ -1,4 +1,5 @@
 import TextFiled from "./TextFiled";
+import TextFiledSplit from "./TextFiledSplit";
 
 const FormData = () => {
   return (
@@ -20,6 +21,11 @@ const FormData = () => {
           errorMessege={true}
           successMessege="아이디 중복검사를 진행하세요."
         />
+        <TextFiledSplit>
+          <TextFiled type="text" />
+          <TextFiled type="text" />
+          <TextFiled type="text" />
+        </TextFiledSplit>
       </form>
     </>
   );
