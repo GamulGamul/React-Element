@@ -6,6 +6,7 @@ import LayerPopup from "./components/popup/LayerPopup";
 import usePopup from "./components/customHook/usePopup"; //popup 커스텀 훅
 import SlideData from "./components/slide/SlideData";
 import FormData from "./components/form/FormData";
+import AccordionData from "./components/accordian/AccordionData";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -18,6 +19,8 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>Accordion</h2>
+      <AccordionData />
       <h2>Form</h2>
       <FormData />
       <h2>swiper slide</h2>
