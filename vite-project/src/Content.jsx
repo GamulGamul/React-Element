@@ -7,6 +7,7 @@ import usePopup from "./components/customHook/usePopup"; //popup 커스텀 훅
 import SlideData from "./components/slide/SlideData";
 import FormData from "./components/form/FormData";
 import AccordionData from "./components/accordian/AccordionData";
+import AccordionLotsData from "./components/accordianLots/AccordionLotsData";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -19,6 +20,8 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>AccordionLots</h2>
+      <AccordionLotsData />
       <h2>Accordion</h2>
       <AccordionData />
       <h2>Form</h2>
