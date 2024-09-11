@@ -8,6 +8,8 @@ import SlideData from "./components/slide/SlideData";
 import FormData from "./components/form/FormData";
 import AccordionData from "./components/accordian/AccordionData";
 import AccordionLotsData from "./components/accordianLots/AccordionLotsData";
+import RadioData from "./components/radio/RadioData";
+import CheckboxData from "./components/checkbox/CheckboxData";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -20,6 +22,10 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>CheckboxData</h2>
+      <CheckboxData />
+      <h2>RadioData</h2>
+      <RadioData />
       <h2>AccordionLots</h2>
       <AccordionLotsData />
       <h2>Accordion</h2>
