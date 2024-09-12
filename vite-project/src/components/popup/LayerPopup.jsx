@@ -15,8 +15,18 @@ const Dimmed = ({ onClose }) => {
   return <Dimmed onClick={onClose} />;
 };
 
-const Modal = ({ title, open, onClose, showCloseBtn = true }) => {
+const Modal = ({
+  title,
+  open,
+  onClose,
+  showCloseBtn = true,
+  effect,
+  children,
+}) => {
   const LayerPopupWrap = styled.div`
+    opacity: 0;
+    ${({ effect }) => effect && `opacity: 1;`}
+    transition: all 0.5s;
     display: ${({ open }) => (open ? "block" : "none")};
     position: fixed;
     z-index: 1000;
@@ -49,11 +59,12 @@ const Modal = ({ title, open, onClose, showCloseBtn = true }) => {
 
   return (
     <>
-      <LayerPopupWrap open={open}>
+      <LayerPopupWrap open={open} effect={effect}>
         <Dimmed onClose={onClose} />
         <LayerPopup>
           <div className="layer-wrap">
             {title && <h4>{title}</h4>}
+            <div className="layer-container">{children}</div>
             {showCloseBtn && (
               <button
                 type="button"

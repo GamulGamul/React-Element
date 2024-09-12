@@ -10,6 +10,9 @@ import AccordionData from "./components/accordian/AccordionData";
 import AccordionLotsData from "./components/accordianLots/AccordionLotsData";
 import RadioData from "./components/radio/RadioData";
 import CheckboxData from "./components/checkbox/CheckboxData";
+import SampleAlert from "./components/popup/SampleAlert";
+import SampleLayer from "./components/popup/SampleLayer";
+import { useState } from "react";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -19,6 +22,14 @@ const ContentWrap = styled.div`
 const Content = () => {
   const [popOpen, handlePopupOpen] = usePopup();
   const [popOpen2, handlePopupOpen2] = usePopup();
+
+  const [effect, setEffect] = useState(false);
+
+  const handleClick = () => {
+    setTimeout(() => {
+      setEffect(true);
+    }, 1000); // 1초 후에 스타일 변경
+  };
 
   return (
     <ContentWrap>
@@ -43,24 +54,38 @@ const Content = () => {
       <h2>Popup</h2>
       <button
         type="button"
-        onClick={handlePopupOpen}
+        onClick={() => {
+          handlePopupOpen();
+          handleClick();
+        }}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업
       </button>
+
       <button
         type="button"
-        onClick={handlePopupOpen2}
+        onClick={() => {
+          handlePopupOpen2();
+        }}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업2
       </button>
+
       <LayerPopup
         title="첫번째 팝업"
+        effect={effect}
         open={popOpen}
         onClose={handlePopupOpen}
-      />
-      <LayerPopup open={popOpen2} onClose={handlePopupOpen2} />
+      >
+        셈플알럿트
+        <SampleAlert />
+      </LayerPopup>
+      <LayerPopup open={popOpen2} onClose={handlePopupOpen2}>
+        둘셋넷다섯
+        <SampleLayer />
+      </LayerPopup>
     </ContentWrap>
   );
 };
