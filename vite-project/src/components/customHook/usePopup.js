@@ -5,24 +5,24 @@ export default function usePopup() {
   const focusButton = useRef(null);
 
   const handlePopupOpen = useCallback((state, e) => {
-    const didMount = (state) => {
-      const $body = document.querySelector("body");
+    const didMount = (state, target) => {
+      const $target = document.querySelector(target);
       if (!state && focusButton.current === undefined) {
-        $body.setAttribute("tabindex", "0");
-        $body.focus();
+        $target.setAttribute("tabindex", "0");
+        $target.focus();
       }
     };
 
-    const click = (state, e) =>
+    const btnClick = (state, e) =>
       state ? (focusButton.current = e?.target) : focusButton.current?.focus();
 
-    const handleFocus = (state, e) => {
-      didMount(state);
-      click(state, e);
+    const popFocus = (state, e) => {
+      didMount(state, "body");
+      btnClick(state, e);
     };
 
     setPopOpen(state);
-    handleFocus(state, e);
+    popFocus(state, e);
   }, []);
 
   return [popOpen, handlePopupOpen];

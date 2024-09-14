@@ -63,6 +63,7 @@ const Modal = ({
 
   const handleTabMove = (open) => {
     if (!open) return;
+
     const modalComponent = modalRef.current;
     const focusableElements = modalRef.current.querySelectorAll(
       'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
