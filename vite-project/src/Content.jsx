@@ -22,6 +22,7 @@ const ContentWrap = styled.div`
 const Content = () => {
   const [popOpen, handlePopupOpen] = usePopup();
   const [popOpen2, handlePopupOpen2] = usePopup();
+
   const [popOpenDidMount, handlePopOpenDidMount] = usePopup(); //윈도우 온로드 팝업
 
   useEffect(() => {
@@ -92,6 +93,7 @@ const Content = () => {
         <SampleLayer />
       </LayerPopup>
 
+      {/* didMount팝업 */}
       <LayerPopup
         title="그냥 팝업"
         type="alert"
