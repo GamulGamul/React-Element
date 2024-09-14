@@ -23,13 +23,13 @@ const Content = () => {
   const [popOpen, handlePopupOpen] = usePopup();
   const [popOpen2, handlePopupOpen2] = usePopup();
 
-  const [effect, setEffect] = useState(false);
+  // const [effect, setEffect] = useState(false);
 
-  const handleClick = () => {
-    setTimeout(() => {
-      setEffect(true);
-    }, 1000); // 1초 후에 스타일 변경
-  };
+  // const handleClick = () => {
+  //   setTimeout(() => {
+  //     setEffect(true);
+  //   }, 1000); // 1초 후에 스타일 변경
+  // };
 
   return (
     <ContentWrap>
@@ -54,10 +54,7 @@ const Content = () => {
       <h2>Popup</h2>
       <button
         type="button"
-        onClick={() => {
-          handlePopupOpen();
-          handleClick();
-        }}
+        onClick={(e) => handlePopupOpen(true, e)}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업
@@ -65,9 +62,7 @@ const Content = () => {
 
       <button
         type="button"
-        onClick={() => {
-          handlePopupOpen2();
-        }}
+        onClick={(e) => handlePopupOpen2(true, e)}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업2
@@ -75,14 +70,14 @@ const Content = () => {
 
       <LayerPopup
         title="첫번째 팝업"
-        effect={effect}
+        // effect={effect}
         open={popOpen}
-        onClose={handlePopupOpen}
+        onClose={() => handlePopupOpen(false)}
       >
         셈플알럿트
         <SampleAlert />
       </LayerPopup>
-      <LayerPopup open={popOpen2} onClose={handlePopupOpen2}>
+      <LayerPopup open={popOpen2} onClose={() => handlePopupOpen2(false)}>
         둘셋넷다섯
         <SampleLayer />
       </LayerPopup>

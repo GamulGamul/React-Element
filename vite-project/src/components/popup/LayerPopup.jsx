@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
+import { useEffect, useRef } from "react";
 
 const Dimmed = ({ onClose }) => {
   const Dimmed = styled.div`
@@ -20,12 +21,12 @@ const Modal = ({
   open,
   onClose,
   showCloseBtn = true,
-  effect,
+  // effect,
   children,
 }) => {
   const LayerPopupWrap = styled.div`
-    opacity: 0;
-    ${({ effect }) => effect && `opacity: 1;`}
+    /* opacity: 0; */
+    /* ${({ effect }) => effect && `opacity: 1;`} */
     transition: all 0.5s;
     display: ${({ open }) => (open ? "block" : "none")};
     position: fixed;
@@ -57,12 +58,55 @@ const Modal = ({
     }
   `;
 
+  const modalRef = useRef(null);
+
+  const handleTabMove = (open) => {
+    if (open) {
+      const modalComponent = modalRef.current;
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      const handleFocus = (e) => {
+        if (e.key === "Tab") {
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              e.preventDefault();
+              modalComponent.focus();
+            } else if (document.activeElement === modalComponent) {
+              e.preventDefault();
+              lastElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              e.preventDefault();
+              modalComponent.focus();
+            }
+          }
+        }
+      };
+
+      modalComponent.focus();
+      modalComponent.addEventListener("keydown", handleFocus);
+
+      return () => {
+        modalComponent.removeEventListener("keydown", handleFocus);
+      };
+    }
+  };
+
+  useEffect(() => {
+    handleTabMove(open);
+  }, [open]);
+
   return (
     <>
-      <LayerPopupWrap open={open} effect={effect}>
+      <LayerPopupWrap open={open}>
         <Dimmed onClose={onClose} />
         <LayerPopup>
-          <div className="layer-wrap">
+          <div className="layer-wrap" ref={modalRef} tabIndex="0">
             {title && <h4>{title}</h4>}
             <div className="layer-container">{children}</div>
             {showCloseBtn && (
