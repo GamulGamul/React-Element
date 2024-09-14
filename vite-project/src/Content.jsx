@@ -12,7 +12,7 @@ import RadioData from "./components/radio/RadioData";
 import CheckboxData from "./components/checkbox/CheckboxData";
 import SampleAlert from "./components/popup/SampleAlert";
 import SampleLayer from "./components/popup/SampleLayer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -22,6 +22,11 @@ const ContentWrap = styled.div`
 const Content = () => {
   const [popOpen, handlePopupOpen] = usePopup();
   const [popOpen2, handlePopupOpen2] = usePopup();
+  const [popOpenDidMount, handlePopOpenDidMount] = usePopup(); //윈도우 온로드 팝업
+
+  useEffect(() => {
+    handlePopOpenDidMount(true);
+  }, [handlePopOpenDidMount]);
 
   // const [effect, setEffect] = useState(false);
 
@@ -33,7 +38,7 @@ const Content = () => {
 
   return (
     <ContentWrap>
-      <h2>CheckboxData</h2>
+      <h2 id="heading">CheckboxData</h2>
       <CheckboxData />
       <h2>RadioData</h2>
       <RadioData />
@@ -71,15 +76,30 @@ const Content = () => {
       <LayerPopup
         title="첫번째 팝업"
         // effect={effect}
+        type="alert"
         open={popOpen}
         onClose={() => handlePopupOpen(false)}
       >
         셈플알럿트
         <SampleAlert />
       </LayerPopup>
-      <LayerPopup open={popOpen2} onClose={() => handlePopupOpen2(false)}>
+      <LayerPopup
+        type="default"
+        open={popOpen2}
+        onClose={() => handlePopupOpen2(false)}
+      >
         둘셋넷다섯
         <SampleLayer />
+      </LayerPopup>
+
+      <LayerPopup
+        title="그냥 팝업"
+        type="alert"
+        open={popOpenDidMount}
+        onClose={() => handlePopOpenDidMount(false)}
+      >
+        셈플알럿트
+        <SampleAlert />
       </LayerPopup>
     </ContentWrap>
   );

@@ -21,6 +21,7 @@ const Modal = ({
   open,
   onClose,
   showCloseBtn = true,
+  type = "default",
   // effect,
   children,
 }) => {
@@ -61,40 +62,39 @@ const Modal = ({
   const modalRef = useRef(null);
 
   const handleTabMove = (open) => {
-    if (open) {
-      const modalComponent = modalRef.current;
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+    if (!open) return;
+    const modalComponent = modalRef.current;
+    const focusableElements = modalRef.current.querySelectorAll(
+      'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
 
-      const handleFocus = (e) => {
-        if (e.key === "Tab") {
-          if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-              e.preventDefault();
-              modalComponent.focus();
-            } else if (document.activeElement === modalComponent) {
-              e.preventDefault();
-              lastElement.focus();
-            }
-          } else {
-            if (document.activeElement === lastElement) {
-              e.preventDefault();
-              modalComponent.focus();
-            }
+    const handleFocus = (e) => {
+      if (e.key === "Tab") {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            modalComponent.focus();
+          } else if (document.activeElement === modalComponent) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            modalComponent.focus();
           }
         }
-      };
+      }
+    };
 
-      modalComponent.focus();
-      modalComponent.addEventListener("keydown", handleFocus);
+    modalComponent.focus();
+    modalComponent.addEventListener("keydown", handleFocus);
 
-      return () => {
-        modalComponent.removeEventListener("keydown", handleFocus);
-      };
-    }
+    return () => {
+      modalComponent.removeEventListener("keydown", handleFocus);
+    };
   };
 
   useEffect(() => {
@@ -103,10 +103,15 @@ const Modal = ({
 
   return (
     <>
-      <LayerPopupWrap open={open}>
+      <LayerPopupWrap open={open} role="dialog">
         <Dimmed onClose={onClose} />
         <LayerPopup>
-          <div className="layer-wrap" ref={modalRef} tabIndex="0">
+          <div
+            className={`layer-wrap ${type}`}
+            ref={modalRef}
+            tabIndex="0"
+            aria-modal={open}
+          >
             {title && <h4>{title}</h4>}
             <div className="layer-container">{children}</div>
             {showCloseBtn && (
