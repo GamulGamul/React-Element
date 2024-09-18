@@ -13,12 +13,12 @@ export default function usePopup() {
       }
     };
 
-    const btnClick = (state, e) =>
+    const click = (state, e) =>
       state ? (focusButton.current = e?.target) : focusButton.current?.focus();
 
     const popFocus = (state, e) => {
       didMount(state, "body");
-      btnClick(state, e);
+      click(state, e);
     };
 
     setPopOpen(state);

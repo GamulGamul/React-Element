@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { keyframes } from "@emotion/react";
 
 const Dimmed = ({ onClose }) => {
   const Dimmed = styled.div`
@@ -15,6 +16,11 @@ const Dimmed = ({ onClose }) => {
   `;
   return <Dimmed onClick={onClose} />;
 };
+const fadeIn = keyframes`
+  to {
+    opacity: 1;
+  }
+`;
 
 const Modal = ({
   title,
@@ -22,17 +28,16 @@ const Modal = ({
   onClose,
   showCloseBtn = true,
   type = "default",
-  // effect,
   children,
 }) => {
   const LayerPopupWrap = styled.div`
-    /* opacity: 0; */
-    /* ${({ effect }) => effect && `opacity: 1;`} */
-    transition: all 0.5s;
     display: ${({ open }) => (open ? "block" : "none")};
+    opacity: 0;
     position: fixed;
     z-index: 1000;
     inset: 0px;
+    animation: ${fadeIn} 0.2s ease forwards;
+    transition: opacity 1s ease, visibility 1s ease;
   `;
 
   const LayerPopup = styled.div`
@@ -59,6 +64,7 @@ const Modal = ({
     }
   `;
 
+  //모달 tab이동
   const modalRef = useRef(null);
 
   const handleTabMove = (open) => {
