@@ -1,19 +1,23 @@
 import { useState } from "react";
 import classnames from "classnames";
 import styled from "@emotion/styled";
-import TextCaution from "./TextCoution";
 
 const STextFiled = styled.div`
+  flex: 1;
   .label {
     display: block;
   }
 
   .success {
-    color: blue;
+    input {
+      border: 1px solid blue;
+    }
   }
 
   .error {
-    color: red;
+    input {
+      border: 1px solid red;
+    }
   }
 
   .focus {
@@ -23,10 +27,16 @@ const STextFiled = styled.div`
       outline: none;
     }
   }
+
+  .input-text {
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+    }
+  }
 `;
 
 const TextFiled = ({
-  label,
   type = "text",
   id,
   title,
@@ -35,8 +45,6 @@ const TextFiled = ({
   disabled,
   valueError = false,
   valueSuccess = false,
-  errorMessege,
-  successMessege,
 }) => {
   const [isFocus, setIsFocus] = useState(false);
 
@@ -58,11 +66,6 @@ const TextFiled = ({
           focus: isFocus,
         })}
       >
-        {label && (
-          <strong className="label">
-            <label htmlFor={id}>{label}</label>
-          </strong>
-        )}
         <input
           type={type}
           id={id}
@@ -74,12 +77,6 @@ const TextFiled = ({
           onBlur={onBlur}
         />
       </div>
-      {errorMessege && (
-        <TextCaution cautionType="error">{errorMessege}</TextCaution>
-      )}
-      {successMessege && (
-        <TextCaution cautionType="success">{successMessege}</TextCaution>
-      )}
     </STextFiled>
   );
 };
