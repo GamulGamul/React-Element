@@ -6,35 +6,38 @@ const FormData = () => {
     <>
       <form>
         <TextFiledWrap
+          id="userId"
           label="아이디 입력"
           errorMessege="아이디 중복검사를 진행하세요."
-          id="userId"
         >
           <TextFiled
+            id="userId"
             type="text"
             placeholder="아이디를 입력하세요."
-            valueError={true}
+            successValue={true}
           />
+          <button type="button">조회</button>
         </TextFiledWrap>
         <TextFiledWrap
+          id="usePassword"
           label="비밀번호 입력"
           successMessege="아이디 중복검사를 진행하세요."
-          id="usePassword"
         >
           <TextFiled
+            id="usePassword"
             type="password"
             placeholder="비밀번호를 입력하세요."
-            valueSuccess={true}
+            errorValue={true}
           />
         </TextFiledWrap>
 
         <TextFiledWrap
-          errorMessege={true}
           successMessege="아이디 중복검사를 진행하세요."
+          label="전화번호 입력"
         >
-          <TextFiled type="text" />
-          <TextFiled type="text" />
-          <TextFiled type="text" />
+          <TextFiled type="text" title="번호 첫번째 3자리" errorValue={true} />
+          <TextFiled type="text" title="번호 두번째 4자리" errorValue={true} />
+          <TextFiled type="text" title="번호 세번째 4자리" errorValue={true} />
         </TextFiledWrap>
       </form>
     </>

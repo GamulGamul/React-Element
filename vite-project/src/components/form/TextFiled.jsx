@@ -22,16 +22,19 @@ const STextFiled = styled.div`
 
   .focus {
     input {
-      background-color: skyblue;
-      border: 1px solid blue;
+      background-color: gray;
+      border: 1px solid green;
       outline: none;
     }
   }
 
   .input-text {
+    height: 100%;
     input[type="password"],
     input[type="text"] {
       width: 100%;
+      height: 100%;
+      vertical-align: top;
     }
   }
 `;
@@ -43,8 +46,8 @@ const TextFiled = ({
   placeholder,
   readOnly,
   disabled,
-  valueError = false,
-  valueSuccess = false,
+  errorValue = false,
+  successValue = false,
 }) => {
   const [isFocus, setIsFocus] = useState(false);
 
@@ -60,8 +63,8 @@ const TextFiled = ({
     <STextFiled>
       <div
         className={classnames("input-text", {
-          error: valueError,
-          success: valueSuccess,
+          error: errorValue,
+          success: successValue,
           disabled: disabled,
           focus: isFocus,
         })}
