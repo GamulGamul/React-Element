@@ -2,6 +2,16 @@ import { useState } from "react";
 import classnames from "classnames";
 import styled from "@emotion/styled";
 
+const AccContent = styled.div`
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease;
+
+  &.open {
+    max-height: 400px;
+  }
+`;
+
 const AccordionLots = ({ list }) => {
   const { title, content } = list;
 
@@ -17,7 +27,7 @@ const AccordionLots = ({ list }) => {
       <button onClick={toggleAccordion} aria-expanded={isOpen}>
         {title}
       </button>
-      {isOpen && <div>{content}</div>}
+      {<AccContent className={isOpen ? "open" : ""}>{content}</AccContent>}
     </div>
   );
 };
