@@ -12,6 +12,8 @@ import RadioData from "./components/radio/RadioData";
 import CheckboxData from "./components/checkbox/CheckboxData";
 import SampleAlert from "./components/popup/SampleAlert";
 import SampleLayer from "./components/popup/SampleLayer";
+import FilterTabData from "./components/filterTab/FilterTabData";
+
 import { useEffect, useState } from "react";
 
 const ContentWrap = styled.div`
@@ -39,7 +41,9 @@ const Content = () => {
 
   return (
     <ContentWrap>
-      <h2 id="heading">CheckboxData</h2>
+      <h2>filterSelectData</h2>
+      <FilterTabData />
+      <h2>CheckboxData</h2>
       <CheckboxData />
       <h2>RadioData</h2>
       <RadioData />
