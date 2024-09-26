@@ -16,24 +16,45 @@ const AccordionLotsData = () => {
     {
       id: "acc-1",
       title: "Section 1",
-      content: (
-        <>
-          <h4>타이틀</h4>
-          <div>Content for section 1</div>
-        </>
-      ),
+      content: [
+        {
+          text: "데이타들0",
+        },
+        {
+          text: "데이타들1",
+        },
+        {
+          text: "데이타들2",
+        },
+        {
+          text: "데이타들3",
+        },
+        {
+          text: "데이타들4",
+        },
+      ],
     },
     {
       id: "acc-2",
       title: "Section 2",
-      content: (
-        <>
-          <h4>타이틀2</h4>
-          <div>Content for section 1</div>
-        </>
-      ),
+      content: [
+        {
+          text: "데이타들0",
+        },
+        {
+          text: "데이타들1",
+        },
+        {
+          text: "데이타들2",
+        },
+        {
+          text: "데이타들3",
+        },
+        {
+          text: "데이타들4",
+        },
+      ],
     },
-    { id: "acc-3", title: "Section 3", content: "Content for section 3" },
   ];
 
   return (

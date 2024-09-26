@@ -1,25 +1,85 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import styled from "@emotion/styled";
 
+const MoreButton = styled.button`
+  background-color: gray;
+  height: 40px;
+  width: 100%;
+`;
+
 const AccContent = styled.div`
-  max-height: 0;
   overflow: hidden;
   transition: max-height 1s ease;
+  .acc-list {
+    padding: 10px 0;
+    border-top: 1px solid black;
+    &:last-child {
+      border-bottom: 1px solid block;
+    }
+  }
+  max-height: ${(props) => props["data-height"] && props["data-height"]}px;
 
   &.open {
-    max-height: 400px;
+    transition: max-height 1s ease;
   }
 `;
 
 const AccordionLots = ({ list }) => {
   const { title, content } = list;
 
+  //리밋
+  const LIMIT = 2;
+  // 더보기 btn
+  const MORE = 2;
+
+  const contentRef = useRef();
+  const listRef = useRef();
+  const btnRef = useRef();
+
+  const conHeight = contentRef?.current?.clientHeight;
+  const listHeight = listRef?.current?.clientHeight;
+  const btnHeight = btnRef?.current?.clientHeight;
+
   const [isOpen, setIsOpen] = useState(false);
+  const [height, setHeight] = useState(conHeight);
+  const [current, setCurrent] = useState(1);
+  const [filterCon, setFilterCon] = useState(LIMIT);
+
+  // useEffect(() => {
+
+  // }, [])
+
+  useEffect(() => {
+    setHeight(0);
+  }, []);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
+
+    if (isOpen) {
+      setHeight(0);
+      setCurrent(1);
+      setFilterCon(LIMIT);
+      // setTimeout(() => {
+      //   setFilterCon(LIMIT);
+      // }, 1000);
+    } else {
+      setHeight(conHeight);
+      setFilterCon(LIMIT);
+    }
   };
+
+  let addHeight = listHeight * (MORE * current + LIMIT) + btnHeight;
+  console.log(`height : ` + height);
+
+  const handleBtnMore = () => {
+    setHeight(addHeight);
+    setFilterCon((prev) => prev + MORE);
+    setCurrent((prev) => prev + MORE);
+  };
+
+  const filterContent = content.filter((_, index) => index < filterCon);
 
   return (
     <div>
@@ -27,7 +87,28 @@ const AccordionLots = ({ list }) => {
       <button onClick={toggleAccordion} aria-expanded={isOpen}>
         {title}
       </button>
-      {<AccContent className={isOpen ? "open" : ""}>{content}</AccContent>}
+      {
+        <AccContent
+          ref={contentRef}
+          data-height={Number(height)}
+          className={isOpen ? "open" : ""}
+        >
+          {filterContent.map((item, index) => (
+            <>
+              <div
+                ref={listRef}
+                className="acc-list"
+                key={`${item.text} + ${index}`}
+              >
+                {item.text}
+              </div>
+            </>
+          ))}
+          <MoreButton ref={btnRef} type="button" onClick={handleBtnMore}>
+            더보기
+          </MoreButton>
+        </AccContent>
+      }
     </div>
   );
 };

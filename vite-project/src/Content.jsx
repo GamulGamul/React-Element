@@ -98,7 +98,7 @@ const Content = () => {
       </LayerPopup>
 
       {/* didMount팝업 */}
-      <LayerPopup
+      {/* <LayerPopup
         title="그냥 팝업"
         type="alert"
         open={popOpenDidMount}
@@ -106,7 +106,7 @@ const Content = () => {
       >
         셈플알럿트
         <SampleAlert />
-      </LayerPopup>
+      </LayerPopup> */}
     </ContentWrap>
   );
 };
