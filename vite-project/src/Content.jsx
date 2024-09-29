@@ -15,6 +15,8 @@ import SampleLayer from "./components/popup/SampleLayer";
 import FilterTabData from "./components/filterTab/FilterTabData";
 
 import { useEffect, useState } from "react";
+import ToggleButtonGuide from "./components/formButton/ToggleButtonGuide";
+import ToastPopup from "./components/toast/toastPopup";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -41,6 +43,23 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>toggleButton</h2>
+      <ToggleButtonGuide />
+      <h2>toastPopup</h2>
+      <ToastPopup
+        id="toast-1"
+        label="계좌 설정"
+        onText="주계좌로 설정되었습니다."
+        offText="주계좌설정이 해지되었습니다."
+        offTimer={5000}
+      />
+      <ToastPopup
+        id="toast-2"
+        label="계좌 설정"
+        onText="2222주계좌로 설정되었습니다."
+        offText="222주계좌설정이 해지되었습니다."
+        offTimer={1000}
+      />
       <h2>filterSelectData</h2>
       <FilterTabData />
       <h2>CheckboxData</h2>
