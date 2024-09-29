@@ -61,9 +61,6 @@ const AccordionLots = ({ list }) => {
       setHeight(0);
       setCurrent(1);
       setFilterCon(LIMIT);
-      // setTimeout(() => {
-      //   setFilterCon(LIMIT);
-      // }, 1000);
     } else {
       setHeight(conHeight);
       setFilterCon(LIMIT);

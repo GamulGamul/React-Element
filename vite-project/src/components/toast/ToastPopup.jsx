@@ -1,11 +1,31 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ToggleButton from "../formButton/ToggleButton";
 
-const StyleToastPopup = styled.div`
-  input {
-    width: 200px;
+const StyleToastPopupWrap = styled.div`
+  position: relative;
+
+  .toast-popup {
+    visibility: hidden;
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    opacity: 0;
+    padding: 10px 20px;
     background-color: gray;
+
+    &.fade-in {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 1s ease-in-out, visibility 0s ease-in-out 0.1s;
+    }
+
+    &.fade-out {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, visibility 0s ease-in-out 1s;
+    }
   }
 `;
 
@@ -16,7 +36,6 @@ const ToastPopup = ({ id, label, onText, offText, offTimer }) => {
   const handleIsOpen = (isChecked) => {
     setIsOpen(true);
     setIsOn(isChecked);
-    console.log("isOn : " + isChecked);
   };
 
   useEffect(() => {
@@ -31,19 +50,19 @@ const ToastPopup = ({ id, label, onText, offText, offTimer }) => {
   }, [isOpen, offTimer, isOn]);
 
   return (
-    <>
+    <StyleToastPopupWrap>
       <ToggleButton label={label} isOpen={handleIsOpen} />
-      {isOpen && (
-        <StyleToastPopup
-          type="toggle"
-          role="alertdialog"
-          aria-live="assertive"
-          aria-describedby={id}
-        >
-          <p id={id}>{isOn ? onText : offText}</p>
-        </StyleToastPopup>
-      )}
-    </>
+      <div
+        className={`toast-popup ${isOpen ? "fade-in" : "fade-out"}`}
+        type="toggle"
+        role="alertdialog"
+        aria-live="assertive"
+        aria-describedby={id}
+        aria-hidden={!isOpen}
+      >
+        <p id={id}>{isOn ? onText : offText}</p>
+      </div>
+    </StyleToastPopupWrap>
   );
 };
 export default ToastPopup;

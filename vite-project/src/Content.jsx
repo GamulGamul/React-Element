@@ -58,7 +58,7 @@ const Content = () => {
         label="계좌 설정"
         onText="2222주계좌로 설정되었습니다."
         offText="222주계좌설정이 해지되었습니다."
-        offTimer={1000}
+        offTimer={2000}
       />
       <h2>filterSelectData</h2>
       <FilterTabData />
