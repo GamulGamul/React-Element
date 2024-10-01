@@ -31,13 +31,23 @@ const Modal = ({
   children,
 }) => {
   const LayerPopupWrap = styled.div`
-    display: ${({ open }) => (open ? "block" : "none")};
+    /* display: ${({ open }) => (open ? "block" : "none")}; */
     opacity: 0;
     position: fixed;
     z-index: 1000;
     inset: 0px;
-    animation: ${fadeIn} 0.2s ease forwards;
-    transition: opacity 1s ease, visibility 1s ease;
+    /* animation: ${fadeIn} 1s ease forwards;
+    transition: opacity 1s ease; */
+    &.fade-in {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 1s ease-in-out, visibility 0s ease-in-out 0.1s;
+    }
+    &.fade-out {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, visibility 0s ease-in-out 1s;
+    }
   `;
 
   const LayerPopup = styled.div`
@@ -108,32 +118,55 @@ const Modal = ({
     handleTabMove(open);
   }, [open]);
 
+  const useFadeRef = useRef(null);
+  const timerRef = useRef(null);
+
+  const handleClose = () => {
+    if (useFadeRef.current) {
+      useFadeRef.current.className += " fade-out";
+      useFadeRef.current.classList.remove("fade-in");
+    }
+
+    timerRef.current = setTimeout(() => {
+      onClose();
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (useFadeRef.current) useFadeRef.current.className += " fade-in";
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [open]);
+
   return (
     <>
-      <LayerPopupWrap open={open} role="dialog">
-        <Dimmed onClose={onClose} />
-        <LayerPopup>
-          <div
-            className={`layer-wrap ${type}`}
-            ref={modalRef}
-            tabIndex="0"
-            aria-modal={open}
-          >
-            {title && <h4>{title}</h4>}
-            <div className="layer-container">{children}</div>
-            {showCloseBtn && (
-              <button
-                type="button"
-                onClick={onClose}
-                className="btn-close"
-                aria-label="닫기"
-              >
-                X
-              </button>
-            )}
-          </div>
-        </LayerPopup>
-      </LayerPopupWrap>
+      {open && (
+        <LayerPopupWrap role="dialog" ref={useFadeRef}>
+          <Dimmed onClose={handleClose} />
+          <LayerPopup>
+            <div
+              className={`layer-wrap ${type}`}
+              ref={modalRef}
+              tabIndex="0"
+              aria-modal={open}
+            >
+              {title && <h4>{title}</h4>}
+              <div className="layer-container">{children}</div>
+              {showCloseBtn && (
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  className="btn-close"
+                  aria-label="닫기"
+                >
+                  X
+                </button>
+              )}
+            </div>
+          </LayerPopup>
+        </LayerPopupWrap>
+      )}
     </>
   );
 };

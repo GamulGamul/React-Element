@@ -58,12 +58,12 @@ const AccordionLots = ({ list }) => {
     setIsOpen(!isOpen);
 
     if (isOpen) {
+      setHeight(conHeight);
+      // setFilterCon(LIMIT);
+    } else {
       setHeight(0);
       setCurrent(1);
-      setFilterCon(LIMIT);
-    } else {
-      setHeight(conHeight);
-      setFilterCon(LIMIT);
+      // setFilterCon(LIMIT);
     }
   };
 
