@@ -52,7 +52,8 @@ const Tab = ({ tabList, defaultIndex = 0 }) => {
         ))}
       </ul>
       <div className="tab-content-wrap">
-        {tabList.map((tab, index) => (
+        {tabList[tabIndex].content}
+        {/* {tabList.map((tab, index) => (
           <div
             key={tab.id}
             id={`${tab.id}-content`}
@@ -64,7 +65,7 @@ const Tab = ({ tabList, defaultIndex = 0 }) => {
           >
             {tab.content}
           </div>
-        ))}
+        ))} */}
       </div>
     </Tab>
   );

@@ -56,15 +56,15 @@ const AccordionLots = ({ list }) => {
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
-
-    if (isOpen) {
-      setHeight(conHeight);
-      // setFilterCon(LIMIT);
-    } else {
-      setHeight(0);
-      setCurrent(1);
-      // setFilterCon(LIMIT);
-    }
+    setHeight(conHeight);
+    // if (isOpen) {
+    //   setHeight(conHeight);
+    //   // setFilterCon(LIMIT);
+    // } else {
+    //   setHeight(0);
+    //   setCurrent(1);
+    //   // setFilterCon(LIMIT);
+    // }
   };
 
   let addHeight = listHeight * (MORE * current + LIMIT) + btnHeight;
@@ -87,7 +87,7 @@ const AccordionLots = ({ list }) => {
       {
         <AccContent
           ref={contentRef}
-          data-height={Number(height)}
+          data-height={height}
           className={isOpen ? "open" : ""}
         >
           {filterContent.map((item, index) => (

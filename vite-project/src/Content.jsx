@@ -17,6 +17,8 @@ import FilterTabData from "./components/filterTab/FilterTabData";
 import { useEffect, useState } from "react";
 import ToggleButtonGuide from "./components/formButton/ToggleButtonGuide";
 import ToastPopup from "./components/toast/toastPopup";
+// import TabAccordion from "./components/tabaccordion/TabAccordion";
+import ContextGuide from "./components/contextTest/ContextGuide";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -43,6 +45,8 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <h2>Context</h2>
+      <ContextGuide />
       <h2>toggleButton</h2>
       <ToggleButtonGuide />
       <h2>toastPopup</h2>
@@ -66,6 +70,8 @@ const Content = () => {
       <CheckboxData />
       <h2>RadioData</h2>
       <RadioData />
+      {/* <h2>accordionTab</h2>
+      <TabAccordion /> */}
       <h2>AccordionLots</h2>
       <AccordionLotsData />
       <h2>Accordion</h2>
