@@ -19,6 +19,8 @@ import ToggleButtonGuide from "./components/formButton/ToggleButtonGuide";
 import ToastPopup from "./components/toast/toastPopup";
 // import TabAccordion from "./components/tabaccordion/TabAccordion";
 import ContextGuide from "./components/contextTest/ContextGuide";
+import ToastPopupInput from "./components/toast/ToastPopupInput";
+import ToastPopupCopy from "./components/toast/ToastPopupCopy";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -43,8 +45,34 @@ const Content = () => {
   //   }, 1000); // 1초 후에 스타일 변경
   // };
 
+  const handlePopupOpenCallBack = (e) => {
+    console.log(`e : ` + e.target.textContent);
+    console.log(333);
+  };
+
+  const handlePopupOpenCallBack22 = (e) => {
+    console.log(`e : ` + e.target.textContent);
+    console.log(333);
+  };
+
   return (
     <ContentWrap>
+      <h2>toast copy</h2>
+      <ToastPopupCopy
+        id="toast-1"
+        label="계좌 설정"
+        onText="주계좌로 설정되었습니다."
+        offText="주계좌설정이 해지되었습니다."
+        offTimer={1000}
+      />
+      <h2>input type</h2>
+      <ToastPopupInput
+        id="toast-1"
+        label="계좌 설정"
+        onText="주계좌로 설정되었습니다."
+        offText="주계좌설정이 해지되었습니다."
+        offTimer={1000}
+      />
       <h2>Context</h2>
       <ContextGuide />
       <h2>toggleButton</h2>
@@ -89,7 +117,7 @@ const Content = () => {
       <h2>Popup</h2>
       <button
         type="button"
-        onClick={(e) => handlePopupOpen(true, e)}
+        onClick={(e) => handlePopupOpen(true, e, handlePopupOpenCallBack)}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업
@@ -97,7 +125,7 @@ const Content = () => {
 
       <button
         type="button"
-        onClick={(e) => handlePopupOpen2(true, e)}
+        onClick={(e) => handlePopupOpen2(true, e, handlePopupOpenCallBack22)}
         style={{ width: "200px", height: "50px" }}
       >
         레이어 팝업2
