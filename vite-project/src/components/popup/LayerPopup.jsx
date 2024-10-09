@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
-import { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useEffect, useRef, useState, createElement } from "react";
 import { keyframes } from "@emotion/react";
 
 const SDimmed = styled.div`
@@ -151,7 +152,9 @@ const Modal = ({
               aria-modal={open}
             >
               {title && <h4>{title}</h4>}
-              <div className="layer-container">{children}</div>
+              <div className="layer-container">
+                {React.cloneElement(children, { handleClose })}
+              </div>
               {showCloseBtn && (
                 <button
                   type="button"

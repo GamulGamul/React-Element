@@ -195,11 +195,12 @@ const Content = () => {
     }));
   }, [data]);
 
-  const handleChangeForeign = (obj) => {
+  const handleChangeForeign = (obj, onClose) => {
     setForeign((prev) => ({
       ...prev,
       ...obj,
     }));
+    onClose && onClose();
   };
 
   return (

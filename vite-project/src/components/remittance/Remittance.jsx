@@ -66,11 +66,7 @@ const Remittance = (props) => {
         open={popOpenCountry}
         onClose={() => setPopOpenCountry(false)}
       >
-        <SampleCountry
-          onClose={() => setPopOpenCountry(false)}
-          data={props.data}
-          handler={props.handler}
-        />
+        <SampleCountry data={props.data} handler={props.handler} />
       </LayerPopup>
     </>
   );

@@ -15,6 +15,7 @@ const SampleCountry = (props) => {
 
   return (
     <>
+      {console.log(props)}
       <div className="search-wrapper">
         <input
           type="text"
@@ -46,7 +47,7 @@ const SampleCountry = (props) => {
                   <li key={i}>
                     <button
                       type="button"
-                      onClick={() => props.handler(el, props.onClose)}
+                      onClick={() => props.handler(el, props.handleClose)}
                     >
                       <strong className="img-wrap">
                         <span
@@ -71,7 +72,7 @@ const SampleCountry = (props) => {
             <li key={i}>
               <button
                 type="button"
-                onClick={() => props.handler(el, props.onClose)}
+                onClick={() => props.handler(el, props.handleClose)}
               >
                 <strong className="img-wrap">
                   <span className="img" aria-label={`${el.country}국기`}></span>
