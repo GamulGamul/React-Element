@@ -15,7 +15,6 @@ const SampleCountry = (props) => {
 
   return (
     <>
-      {console.log(props)}
       <div className="search-wrapper">
         <input
           type="text"
