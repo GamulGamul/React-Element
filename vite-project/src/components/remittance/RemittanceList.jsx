@@ -2,11 +2,13 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 const RemittanceList = (props) => {
-  const foreign = props.foreign[0];
+  const foreign = props.foreign;
+
+  if (!foreign || !foreign.company) return null;
 
   return (
     <>
-      {foreign?.company.map((list, i) => (
+      {foreign.company.map((list, i) => (
         <Fragment key={i}>
           <Link>
             <div className="logo-wrap">

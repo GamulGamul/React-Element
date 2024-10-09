@@ -6,7 +6,7 @@ import SampleCountry from "../popup/SampleCountry";
 const Remittance = (props) => {
   const [popOpenCountry, setPopOpenCountry] = usePopup();
 
-  const foreign = props.foreign[0];
+  const foreign = props.foreign;
 
   const handleOpenCountry = (state, e) => {
     setPopOpenCountry(state, e);
@@ -36,19 +36,19 @@ const Remittance = (props) => {
         <div className="box foreign">
           <div className="left">
             <div
-              className={`img ${foreign?.icon}`}
-              aria-label={foreign?.country}
+              className={`img ${foreign.icon}`}
+              aria-label={foreign.country}
             ></div>
             <button
               type="button"
               className="name"
               onClick={(e) => handleOpenCountry(true, e)}
             >
-              {foreign?.unit}
+              {foreign.unit}
             </button>
           </div>
           <div className="right">
-            <p className="rate">{foreign?.rate}</p>
+            <p className="rate">{foreign.rate}</p>
           </div>
         </div>
         <div className="box bottom">
@@ -66,7 +66,11 @@ const Remittance = (props) => {
         open={popOpenCountry}
         onClose={() => setPopOpenCountry(false)}
       >
-        <SampleCountry data={props.data} handler={props.handleChangeForeign} />
+        <SampleCountry
+          onClose={() => setPopOpenCountry(false)}
+          data={props.data}
+          handler={props.handler}
+        />
       </LayerPopup>
     </>
   );

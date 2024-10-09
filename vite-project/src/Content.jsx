@@ -60,7 +60,6 @@ const Content = () => {
   const [radioChange, setRadioChange] = useState(false);
 
   const handleRadioChange = (state) => {
-    console.log(radioChange);
     setRadioChange(state);
   };
 
@@ -84,7 +83,7 @@ const Content = () => {
         country: "미국",
         countryEn: "United States",
         unit: "USD",
-        rate: 67734,
+        rate: 367734,
         company: [
           {
             name: "hanpass",
@@ -113,24 +112,24 @@ const Content = () => {
         country: "베트남",
         countryEn: "Vietnam",
         unit: "Dong",
-        rate: 67734,
+        rate: 267734,
         company: [
           {
-            name: "hanpass",
-            rate: 74195,
-            charge: 1000,
+            name: "Vietnam hanpass",
+            rate: 274195,
+            charge: 5000,
             href: "/",
           },
           {
-            name: "gentbe",
-            rate: 7085,
-            charge: 2000,
+            name: "Vietnam gentbe",
+            rate: 27085,
+            charge: 6000,
             href: "/",
           },
           {
-            name: "western union",
-            rate: 7085,
-            charge: 1000,
+            name: "Vietnam western union",
+            rate: 27085,
+            charge: 7000,
             href: "/",
           },
         ],
@@ -141,24 +140,24 @@ const Content = () => {
         country: "홍콩",
         countryEn: "Hong Kong",
         unit: "HKD",
-        rate: 67734,
+        rate: 167734,
         company: [
           {
-            name: "hanpass",
-            rate: 74195,
-            charge: 1000,
-            href: "/",
-          },
-          {
-            name: "gentbe",
-            rate: 7085,
+            name: "Hong Kong hanpass",
+            rate: 174195,
             charge: 2000,
             href: "/",
           },
           {
-            name: "western union",
-            rate: 7085,
-            charge: 1000,
+            name: "Hong Kong gentbe",
+            rate: 17085,
+            charge: 4000,
+            href: "/",
+          },
+          {
+            name: "Hong Kong western union",
+            rate: 17085,
+            charge: 8000,
             href: "/",
           },
         ],
@@ -186,15 +185,21 @@ const Content = () => {
     setNowData(nowDataData);
   }, [nowDataData]);
 
-  const [foreign, setForeign] = useState([]);
+  const [foreign, setForeign] = useState({});
 
   useEffect(() => {
     const foreignDefaultNSelect = data.filter((el) => el.state);
-    setForeign(foreignDefaultNSelect);
+    setForeign((prev) => ({
+      ...prev,
+      ...foreignDefaultNSelect[0],
+    }));
   }, [data]);
 
-  const handleChangeForeign = (value) => {
-    setForeign(value);
+  const handleChangeForeign = (obj) => {
+    setForeign((prev) => ({
+      ...prev,
+      ...obj,
+    }));
   };
 
   return (
@@ -204,7 +209,7 @@ const Content = () => {
         data={data}
         nowData={nowData}
         foreign={foreign}
-        handleChangeForeign={handleChangeForeign}
+        handler={handleChangeForeign}
       />
       <RemittanceList nowData={nowData} foreign={foreign} />
       <h2>toast copy</h2>

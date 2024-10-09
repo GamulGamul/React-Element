@@ -44,7 +44,10 @@ const SampleCountry = (props) => {
                 .filter((el) => el.major)
                 .map((el, i) => (
                   <li key={i}>
-                    <button type="button">
+                    <button
+                      type="button"
+                      onClick={() => props.handler(el, props.onClose)}
+                    >
                       <strong className="img-wrap">
                         <span
                           className="img"
@@ -66,7 +69,10 @@ const SampleCountry = (props) => {
         <ul className="country-list">
           {filterData.map((el, i) => (
             <li key={i}>
-              <button type="button">
+              <button
+                type="button"
+                onClick={() => props.handler(el, props.onClose)}
+              >
                 <strong className="img-wrap">
                   <span className="img" aria-label={`${el.country}국기`}></span>
                   <span className="name">
