@@ -3,6 +3,6 @@ import { TabContext } from "./TabProvider";
 
 const ContextItem = () => {
   const { selectedTab } = useContext(TabContext);
-  return <div>{console.log(selectedTab)}</div>;
+  return <div>11</div>;
 };
 export default ContextItem;

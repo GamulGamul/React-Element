@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const tabData = [
   {
@@ -34,9 +34,7 @@ const contentData = [
     income: 1000,
     balance: 9900,
     date: "08/09 17:25",
-    text() {
-      console.log(this);
-    },
+    text() {},
     // text() {
     //   return `(입금) ${this?.income}원 김전북 잔액:${this?.balance}원 ${this?.date} `;
     // },
@@ -65,12 +63,12 @@ const FilterTabData = () => {
   return (
     <>
       <div>
-        {tabData.map(({ title, id }) => (
-          <>
+        {tabData.map(({ title, id }, index) => (
+          <Fragment key={index}>
             <button type="button" key={id}>
               {title}
             </button>
-          </>
+          </Fragment>
         ))}
       </div>
 

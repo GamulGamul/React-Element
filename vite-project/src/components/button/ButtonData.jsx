@@ -1,8 +1,6 @@
 import ButtonList from "./ButtonList";
 
-function btnClickHandler() {
-  console.log("click");
-}
+function btnClickHandler() {}
 
 const primaryMediumSamples = [
   { label: "Primary Medium1", className: "primary", onClick: btnClickHandler },

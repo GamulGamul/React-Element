@@ -55,6 +55,13 @@ const Content = () => {
     console.log(333);
   };
 
+  const [radioChange, setRadioChange] = useState(false);
+
+  const handleRadioChange = (state) => {
+    console.log(radioChange);
+    setRadioChange(state);
+  };
+
   return (
     <ContentWrap>
       <h2>toast copy</h2>
@@ -139,7 +146,7 @@ const Content = () => {
         onClose={() => handlePopupOpen(false)}
       >
         셈플알럿트
-        <SampleAlert />
+        <SampleAlert handleRadioChange={handleRadioChange} />
       </LayerPopup>
       <LayerPopup
         type="default"
@@ -147,7 +154,7 @@ const Content = () => {
         onClose={() => handlePopupOpen2(false)}
       >
         둘셋넷다섯
-        <SampleLayer />
+        <SampleLayer handleRadioChange={handleRadioChange} />
       </LayerPopup>
 
       {/* didMount팝업 */}

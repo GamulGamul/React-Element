@@ -37,7 +37,6 @@ const ToastPopupInput = ({ id, label, onText, offText, offTimer }) => {
   const handleIsOpen = (e) => {
     setIsOpen(true);
     setIsOn(e.target.checked);
-    console.log(e.target.checked);
   };
 
   useEffect(() => {

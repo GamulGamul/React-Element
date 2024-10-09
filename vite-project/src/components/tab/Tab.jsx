@@ -7,10 +7,6 @@ const Tab = ({ tabList, defaultIndex = 0 }) => {
 
   const tabActiveHandle = (index) => setTabIndex(index);
 
-  // useEffect(() => {
-  //   console.log(tabIndex);
-  // }, [tabIndex]);
-
   const Tab = styled.div`
     color: #222;
     .tab-list-wrap {

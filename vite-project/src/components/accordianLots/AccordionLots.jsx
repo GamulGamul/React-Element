@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import styled from "@emotion/styled";
 
@@ -68,7 +68,6 @@ const AccordionLots = ({ list }) => {
   };
 
   let addHeight = listHeight * (MORE * current + LIMIT) + btnHeight;
-  console.log(`height : ` + height);
 
   const handleBtnMore = () => {
     setHeight(addHeight);
@@ -91,7 +90,7 @@ const AccordionLots = ({ list }) => {
           className={isOpen ? "open" : ""}
         >
           {filterContent.map((item, index) => (
-            <>
+            <Fragment key={index}>
               <div
                 ref={listRef}
                 className="acc-list"
@@ -99,7 +98,7 @@ const AccordionLots = ({ list }) => {
               >
                 {item.text}
               </div>
-            </>
+            </Fragment>
           ))}
           <MoreButton ref={btnRef} type="button" onClick={handleBtnMore}>
             더보기
