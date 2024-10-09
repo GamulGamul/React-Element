@@ -14,13 +14,15 @@ import SampleAlert from "./components/popup/SampleAlert";
 import SampleLayer from "./components/popup/SampleLayer";
 import FilterTabData from "./components/filterTab/FilterTabData";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ToggleButtonGuide from "./components/formButton/ToggleButtonGuide";
 import ToastPopup from "./components/toast/toastPopup";
 // import TabAccordion from "./components/tabaccordion/TabAccordion";
 import ContextGuide from "./components/contextTest/ContextGuide";
 import ToastPopupInput from "./components/toast/ToastPopupInput";
 import ToastPopupCopy from "./components/toast/ToastPopupCopy";
+import Remittance from "./components/remittance/Remittance";
+import RemittanceList from "./components/remittance/RemittanceList";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -62,8 +64,116 @@ const Content = () => {
     setRadioChange(state);
   };
 
+  //////////////////////////////////// 해외송금비교
+
+  const dummiyData = useMemo(
+    () => [
+      {
+        default: true,
+        state: false,
+        icon: "KRW",
+        country: "한국",
+        unit: "KRW",
+        rate: 1000000,
+      },
+      {
+        state: true, //초기값, 상태가 변했을때
+        icon: "USE",
+        country: "미국",
+        unit: "USD",
+        rate: 67734,
+        company: [
+          {
+            name: "hanpass",
+            rate: 74195,
+            charge: 1000,
+            href: "/",
+          },
+          {
+            name: "gentbe",
+            rate: 7085,
+            charge: 2000,
+            href: "/",
+          },
+          {
+            name: "western union",
+            rate: 7085,
+            charge: 1000,
+            href: "/",
+          },
+        ],
+      },
+      {
+        state: false,
+        icon: "Dong",
+        country: "베트남",
+        unit: "Dong",
+        rate: 67734,
+        company: [
+          {
+            name: "hanpass",
+            rate: 74195,
+            charge: 1000,
+            href: "/",
+          },
+          {
+            name: "gentbe",
+            rate: 7085,
+            charge: 2000,
+            href: "/",
+          },
+          {
+            name: "western union",
+            rate: 7085,
+            charge: 1000,
+            href: "/",
+          },
+        ],
+      },
+    ],
+    []
+  );
+
+  const nowDataData = useMemo(
+    () => ({
+      krw: 1345,
+      usd: 1,
+    }),
+    []
+  );
+
+  const [data, setData] = useState([]);
+  const [nowData, setNowData] = useState({});
+
+  useEffect(() => {
+    setData(dummiyData);
+  }, [dummiyData]);
+
+  useEffect(() => {
+    setNowData(nowDataData);
+  }, [nowDataData]);
+
+  const [foreign, setForeign] = useState([]);
+
+  useEffect(() => {
+    const foreignDefault = data.filter((el) => el.state);
+    setForeign(foreignDefault);
+  }, [data]);
+
+  const handleChangeForeign = (value) => {
+    setForeign(value);
+  };
+
   return (
     <ContentWrap>
+      <h2>worked</h2>
+      <Remittance
+        data={data}
+        nowData={nowData}
+        foreign={foreign}
+        handleChangeForeign={handleChangeForeign}
+      />
+      <RemittanceList data={data} nowData={nowData} foreign={foreign} />
       <h2>toast copy</h2>
       <ToastPopupCopy
         id="toast-1"
