@@ -69,17 +69,20 @@ const Content = () => {
   const dummiyData = useMemo(
     () => [
       {
-        default: true,
+        default: true, // 한국 고정값
         state: false,
         icon: "KRW",
         country: "한국",
+        countryEn: "korea",
         unit: "KRW",
         rate: 1000000,
       },
       {
-        state: true, //초기값, 상태가 변했을때
+        state: true, // state: true는 초기값 or 송금 국가 및 통화를 선택했을때
+        major: true, // 주요국가
         icon: "USE",
         country: "미국",
+        countryEn: "United States",
         unit: "USD",
         rate: 67734,
         company: [
@@ -105,9 +108,39 @@ const Content = () => {
       },
       {
         state: false,
+        major: true, // 주요국가
         icon: "Dong",
         country: "베트남",
+        countryEn: "Vietnam",
         unit: "Dong",
+        rate: 67734,
+        company: [
+          {
+            name: "hanpass",
+            rate: 74195,
+            charge: 1000,
+            href: "/",
+          },
+          {
+            name: "gentbe",
+            rate: 7085,
+            charge: 2000,
+            href: "/",
+          },
+          {
+            name: "western union",
+            rate: 7085,
+            charge: 1000,
+            href: "/",
+          },
+        ],
+      },
+      {
+        state: false,
+        icon: "HKD",
+        country: "홍콩",
+        countryEn: "Hong Kong",
+        unit: "HKD",
         rate: 67734,
         company: [
           {
@@ -156,8 +189,8 @@ const Content = () => {
   const [foreign, setForeign] = useState([]);
 
   useEffect(() => {
-    const foreignDefault = data.filter((el) => el.state);
-    setForeign(foreignDefault);
+    const foreignDefaultNSelect = data.filter((el) => el.state);
+    setForeign(foreignDefaultNSelect);
   }, [data]);
 
   const handleChangeForeign = (value) => {
@@ -173,7 +206,7 @@ const Content = () => {
         foreign={foreign}
         handleChangeForeign={handleChangeForeign}
       />
-      <RemittanceList data={data} nowData={nowData} foreign={foreign} />
+      <RemittanceList nowData={nowData} foreign={foreign} />
       <h2>toast copy</h2>
       <ToastPopupCopy
         id="toast-1"
