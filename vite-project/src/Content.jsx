@@ -64,11 +64,26 @@ const Content = () => {
   };
 
   //////////////////////////////////// 해외송금비교
+  /*
+    //상태값 
+    login: true, //로그인 한 회원
+    default: true, //한국 고정값
+    state: true, //초기값 or 송금 국가 및 통화를 선택했을때
+    major: true, //주요 국가
+
+    //공통
+    icon: 국기 이미지
+    country: 나라
+    countryEn: 나라 영문명
+    unit: 화폐 단위
+    rate: 금액,
+    company: 각 회사 별 송금 비교 리스트
+  */
 
   const dummiyData = useMemo(
     () => [
       {
-        default: true, // 한국 고정값
+        default: true,
         state: false,
         icon: "KRW",
         country: "한국",
@@ -77,8 +92,9 @@ const Content = () => {
         rate: 1000000,
       },
       {
-        state: true, // state: true는 초기값 or 송금 국가 및 통화를 선택했을때
-        major: true, // 주요국가
+        login: true,
+        state: true,
+        major: true,
         icon: "USE",
         country: "미국",
         countryEn: "United States",

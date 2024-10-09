@@ -29,15 +29,22 @@ const SampleCountry = (props) => {
         ) : (
           <>
             <ul className="country-list">
-              <li>
-                <button type="button">
-                  <strong className="img-wrap">
-                    <span className="img" aria-label={`한국 국기`}></span>
-                    <span className="name">국가명 (영문)</span>
-                  </strong>
-                  <span className="unit">통화</span>
-                </button>
-              </li>
+              {props.data
+                .filter((el) => el.login)
+                .map((el, i) => (
+                  <li key={i}>
+                    <strong className="img-wrap">
+                      <span
+                        className="img"
+                        aria-label={`${el.country}국기`}
+                      ></span>
+                      <span className="name">
+                        {el.country} ({el.countryEn})
+                      </span>
+                    </strong>
+                    <span className="unit">{el.unit}</span>
+                  </li>
+                ))}
             </ul>
             <h3>주요국가</h3>
             <ul className="country-list">
