@@ -26,6 +26,14 @@ const SwiperTabGuide = () => {
       title: "텝6",
       content: "66",
     },
+    {
+      title: "텝7",
+      content: "77",
+    },
+    {
+      title: "텝8",
+      content: "88",
+    },
   ];
 
   return (
