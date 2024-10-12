@@ -1,16 +1,24 @@
 import usePopup from "../customHook/usePopup";
 import LayerPopup from "./LayerPopup";
+import SampleAlert from "./SampleAlert";
 
 const SampleLayer = () => {
   const [popOpenAgain, handlepopOpenAgain] = usePopup();
   return (
     <>
-      <button type="button" onClick={(e) => handlepopOpenAgain(true, e)}>
-        팝업 열기
-      </button>
-      <LayerPopup open={popOpenAgain} onClose={() => handlepopOpenAgain(false)}>
-        두번째 팝업
-      </LayerPopup>
+      <div>
+        <button type="button" onClick={(e) => handlepopOpenAgain(true, e)}>
+          팝업 열기
+        </button>
+
+        <LayerPopup
+          type="default"
+          open={popOpenAgain}
+          onClose={() => handlepopOpenAgain(false)}
+        >
+          <SampleAlert />
+        </LayerPopup>
+      </div>
     </>
   );
 };

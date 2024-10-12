@@ -147,20 +147,18 @@ const Content = () => {
 
       <LayerPopup
         title="첫번째 팝업"
-        // effect={effect}
-        type="alert"
+        type="default"
         open={popOpen}
         onClose={() => handlePopupOpen(false)}
       >
-        셈플알럿트
-        <SampleAlert handleRadioChange={handleRadioChange} />
+        <SampleAlert />
       </LayerPopup>
+
       <LayerPopup
         type="default"
         open={popOpen2}
         onClose={() => handlePopupOpen2(false)}
       >
-        둘셋넷다섯
         <SampleLayer handleRadioChange={handleRadioChange} />
       </LayerPopup>
 

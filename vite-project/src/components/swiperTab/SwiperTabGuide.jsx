@@ -1,4 +1,6 @@
+import { useState } from "react";
 import SwiperTab from "./SwiperTab";
+import JustTab from "./JustTab";
 
 const SwiperTabGuide = () => {
   const tabData = [
@@ -36,10 +38,12 @@ const SwiperTabGuide = () => {
     },
   ];
 
+  const [tabIndex, setTabIndex] = useState();
+
   return (
     <>
-      <SwiperTab data={tabData} />
-      <SwiperTab data={tabData} />
+      <JustTab data={tabData} tabIndex={tabIndex} setTabIndex={setTabIndex} />
+      <SwiperTab data={tabData} tabIndex={tabIndex} setTabIndex={setTabIndex} />
     </>
   );
 };

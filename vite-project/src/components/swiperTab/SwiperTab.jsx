@@ -32,7 +32,7 @@ const SSwiperTab = styled.div`
 const SwiperTab = (props) => {
   const swiperRef = useRef(null);
   const [isSwiperState, setIsSwiperState] = useState(true); // swiper 활성 비활성
-  const [tabIndex, setTabIndex] = useState(); // tabIndex
+  // tabIndex
 
   const handleToggleSwiper = () => {
     if (swiperRef.current) {
@@ -45,15 +45,15 @@ const SwiperTab = (props) => {
   useEffect(() => {
     if (isSwiperState && swiperRef.current) {
       console.log("Swiper 활성화 상태가 되었음");
-      swiperRef.current.slideTo(tabIndex);
+      swiperRef.current.slideTo(props.tabIndex);
       // 여기에 Swiper가 활성화되었을 때의 추가 작업을 작성하세요
       // 예: 초기 슬라이드로 이동하거나 특정 상태를 리셋하는 등
     }
-  }, [isSwiperState, tabIndex]);
+  }, [isSwiperState, props.tabIndex]);
 
   const handleButtonClick = (index, e) => {
     e.preventDefault();
-    setTabIndex(index);
+    props.setTabIndex(index);
     if (swiperRef.current) {
       swiperRef.current.slideTo(index); // 클릭한 인덱스의 슬라이드로 이동
     }
@@ -88,7 +88,7 @@ const SwiperTab = (props) => {
           <SwiperSlide key={el.title}>
             <a
               href="#"
-              className={i === tabIndex ? "active" : ""}
+              className={i === props.tabIndex ? "active" : ""}
               onClick={(e) => handleButtonClick(i, e)}
             >
               {el.title}
@@ -96,7 +96,7 @@ const SwiperTab = (props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="container">{props.data[tabIndex]?.content}</div>
+      <div className="container">{props.data[props.tabIndex]?.content}</div>
     </SSwiperTab>
   );
 };
