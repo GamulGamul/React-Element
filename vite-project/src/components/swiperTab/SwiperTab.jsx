@@ -31,8 +31,7 @@ const SSwiperTab = styled.div`
 
 const SwiperTab = (props) => {
   const swiperRef = useRef(null);
-  const [isSwiperState, setIsSwiperState] = useState(props.swiperState); // swiper 활성 비활성
-  // tabIndex
+  const [isSwiperState, setIsSwiperState] = useState(props.swiperState || true); // swiper 활성 비활성
 
   const handleToggleSwiper = () => {
     if (swiperRef.current) {
@@ -54,7 +53,7 @@ const SwiperTab = (props) => {
 
   const handleButtonClick = (index, e) => {
     e.preventDefault();
-    props.setTabIndex(index);
+    props.handleSetTabIndex && props.handleSetTabIndex(index);
     if (swiperRef.current) {
       swiperRef.current.slideTo(index); // 클릭한 인덱스의 슬라이드로 이동
     }
@@ -97,6 +96,7 @@ const SwiperTab = (props) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      {console.log(props.data[props.tabIndex]?.content)}
       <div className="container">{props.data[props.tabIndex]?.content}</div>
     </SSwiperTab>
   );

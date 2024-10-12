@@ -25,6 +25,7 @@ import Remittance from "./components/remittance/Remittance";
 import RemittanceList from "./components/remittance/RemittanceList";
 import RemittanceGuide from "./components/remittance/RemittanceGuide";
 import SwiperTabGuide from "./components/swiperTab/SwiperTabGuide";
+import SwiperTab from "./components/swiperTab/SwiperTab";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -65,10 +66,56 @@ const Content = () => {
     setRadioChange(state);
   };
 
+  const tabData = [
+    {
+      title: "텝1",
+      content: "11",
+    },
+    {
+      title: "텝2",
+      content: "22",
+    },
+    {
+      title: "텝3",
+      content: "33",
+    },
+    {
+      title: "텝4",
+      content: "44",
+    },
+    {
+      title: "텝5",
+      content: "55",
+    },
+    {
+      title: "텝6",
+      content: "66",
+    },
+    {
+      title: "텝7",
+      content: "77",
+    },
+    {
+      title: "텝8",
+      content: "88",
+    },
+  ];
+  const [tabIndex, setTabIndex] = useState(null);
+
+  const handleSetTabIndex = (index) => {
+    setTabIndex(index);
+  };
+
   return (
     <ContentWrap>
-      <h2>swiperTab</h2>
+      <h2>swiperTabPopup</h2>
       <SwiperTabGuide />
+      <h2>swiperTab</h2>
+      <SwiperTab
+        data={tabData}
+        tabIndex={tabIndex}
+        handleSetTabIndex={handleSetTabIndex}
+      />
       <h2>worked</h2>
       <RemittanceGuide />
       <h2>toast copy</h2>
