@@ -31,12 +31,13 @@ const SSwiperTab = styled.div`
 
 const SwiperTab = (props) => {
   const swiperRef = useRef(null);
-  const [isSwiperState, setIsSwiperState] = useState(true); // swiper 활성 비활성
+  const [isSwiperState, setIsSwiperState] = useState(props.swiperState); // swiper 활성 비활성
   // tabIndex
 
   const handleToggleSwiper = () => {
     if (swiperRef.current) {
       const newState = !isSwiperState;
+      console.log(newState);
       swiperRef.current.enabled = newState; // Swiper 활성화/비활성화
       setIsSwiperState(newState); // Swiper 활성화 상태 업데이트
     }
@@ -44,7 +45,7 @@ const SwiperTab = (props) => {
 
   useEffect(() => {
     if (isSwiperState && swiperRef.current) {
-      console.log("Swiper 활성화 상태가 되었음");
+      // console.log("Swiper 활성화 상태가 되었음");
       swiperRef.current.slideTo(props.tabIndex);
       // 여기에 Swiper가 활성화되었을 때의 추가 작업을 작성하세요
       // 예: 초기 슬라이드로 이동하거나 특정 상태를 리셋하는 등
