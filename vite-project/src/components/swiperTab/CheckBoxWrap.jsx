@@ -9,10 +9,9 @@ const CheckBoxWrap = (props) => {
   const handleInput = (e, name) => {
     setIsChecked((prev) => {
       const updateState = [...prev];
-      updateState[tabIndex] = {
-        ...updateState[tabIndex],
-        [name]: e.target.checked,
-      };
+      updateState[tabIndex] = updateState[tabIndex].map((el) =>
+        el.name === name ? { ...el, state: e.target.checked } : el
+      );
       return updateState;
     });
   };
@@ -27,12 +26,15 @@ const CheckBoxWrap = (props) => {
   }, [isChecked, setIsData, tabIndex]);
 
   return (
-    <CheckBox
-      {...props}
-      tabIndex={tabIndex}
-      isChecked={isChecked[tabIndex]}
-      handleInput={handleInput}
-    />
+    <>
+      {/* {console.log(isChecked)} */}
+      <CheckBox
+        {...props}
+        tabIndex={tabIndex}
+        isChecked={isChecked[tabIndex]}
+        handleInput={handleInput}
+      />
+    </>
   );
 };
 export default CheckBoxWrap;

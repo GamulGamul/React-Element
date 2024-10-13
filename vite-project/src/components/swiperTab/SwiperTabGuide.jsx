@@ -39,7 +39,7 @@ const SwiperTabGuide = () => {
     }, {})
   );
 
-  const [isData, setIsData] = useState(defaultData); //data
+  const [isData, setIsData] = useState([]); //data
   const [tabIndex, setTabIndex] = useState(null); //tab
 
   const handleSetTabIndex = (index) => setTabIndex(index); //tab
@@ -49,6 +49,12 @@ const SwiperTabGuide = () => {
     setTabIndex(null);
     setIsData(defaultData);
   };
+
+  useEffect(() => {
+    setIsData(data);
+  }, []);
+
+  console.log(isData);
 
   useEffect(() => {
     //isData[0] 요금제,
