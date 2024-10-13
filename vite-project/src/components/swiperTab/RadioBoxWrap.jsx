@@ -9,13 +9,12 @@ const RadioBoxWrap = (props) => {
   const handleInput = (e, name) => {
     setIsChecked((prev) => {
       const updateState = [...prev];
-      updateState[tabIndex] = Object.keys(updateState[tabIndex]).reduce(
-        (acc, key) => {
-          acc[key] = key === name; // 선택된 라디오 버튼만 true로 설정
-          return acc;
-        },
-        {}
-      );
+      updateState[tabIndex] = updateState[tabIndex].map((el) => {
+        // 선택된 라디오 버튼만 true로 설정, 나머지는 false
+        return el.name === name
+          ? { ...el, state: true }
+          : { ...el, state: false };
+      });
       return updateState;
     });
   };

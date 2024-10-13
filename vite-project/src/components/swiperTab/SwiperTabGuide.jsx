@@ -1,7 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import JustTab from "./JustTab";
-import CheckBox from "./CheckBox";
-import RadioBox from "./RadioBox";
 import { data } from "./data";
 import CheckBoxWrap from "./CheckBoxWrap";
 import RadioBoxWrap from "./RadioBoxWrap";
@@ -54,19 +52,18 @@ const SwiperTabGuide = () => {
     setIsData(data);
   }, []);
 
-  console.log(isData);
-
   useEffect(() => {
     //isData[0] 요금제,
     //isData[1] 데이터량,
     //isData[2] 통신망,
     //isData[3] 5G/LTE,
     //isData[4] 통신사,
-    // console.log(isData);
-    // console.log(isData[tabIndex]);
-    // const test = isData
-    //   .map((el) => Object.values(el).map((el, i) => (el ? i : null)))
-    //   .filter((i) => i !== null);
+    const trueItem = isData.map((items) => items.filter((item) => item.state));
+    console.log({
+      data: isData,
+      selectTabData: isData[tabIndex] || null,
+      trueItem,
+    });
   }, [isData, tabIndex]);
 
   return (
