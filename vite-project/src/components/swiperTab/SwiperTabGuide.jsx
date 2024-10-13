@@ -45,7 +45,7 @@ const SwiperTabGuide = () => {
   const handleReset = () => {
     //reset
     setTabIndex(null);
-    setIsData(defaultData);
+    setIsData(data);
   };
 
   useEffect(() => {

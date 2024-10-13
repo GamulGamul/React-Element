@@ -7,7 +7,7 @@ const CheckBox = (props) => {
           <input
             type="checkbox"
             checked={props.isChecked[i].state || false}
-            onChange={(e) => props.handleInput(e, el.name)}
+            onChange={(e) => props.handleInputChecked(e, el.name)}
           />
         </label>
       ))}
