@@ -5,9 +5,10 @@ const RadioBox = (props) => {
         <label key={el.label}>
           <span>{el.label}</span>
           <input
-            type="checkbox"
-            checked={props.isChecked[props.tabIndex][el.name] || false}
+            type="radio"
+            checked={props.isChecked[el.name] || false}
             onChange={(e) => props.handleInput(e, el.name)}
+            name={`radio-data-${props.tabIndex}`}
           />
         </label>
       ))}

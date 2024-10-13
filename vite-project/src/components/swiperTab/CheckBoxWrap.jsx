@@ -3,16 +3,9 @@ import CheckBox from "./CheckBox";
 import { RateContext } from "./SwiperTabGuide";
 
 const CheckBoxWrap = (props) => {
-  const { tabIndex, setIsData } = useContext(RateContext);
+  const { tabIndex, isData, setIsData } = useContext(RateContext);
 
-  const inputInitialChckedState = props.data.map((el) =>
-    el.reduce((acc, el) => {
-      if (el.name) acc[el.name] = false;
-      return acc;
-    }, {})
-  );
-
-  const [isChecked, setIsChecked] = useState(inputInitialChckedState);
+  const [isChecked, setIsChecked] = useState(isData);
   const handleInput = (e, name) => {
     setIsChecked((prev) => {
       const updateState = [...prev];
@@ -24,17 +17,8 @@ const CheckBoxWrap = (props) => {
     });
   };
 
-  // useState(() => {
-  //   setIsChecked(prev => [
-  //     ...prev,
-  //     isData,
-  //   ]);
-  // }, []);
-  //   console.log([isChecked[tabIndex]]);
-
   useEffect(() => {
-    if (setIsData)
-      //   setIsData((prev) => ({ ...prev, [tabIndex]: isChecked[tabIndex] }));
+    if (setIsData && isChecked)
       setIsData((prev) => {
         const updateState = [...prev];
         updateState[tabIndex] = isChecked[tabIndex];

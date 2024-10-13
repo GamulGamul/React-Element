@@ -5,40 +5,35 @@ import RadioBox from "./RadioBox";
 const RadioBoxWrap = (props) => {
   const { tabIndex, isData, setIsData } = useContext(RateContext);
 
-  const inputInitialChckedState = props.data.map((el) =>
-    el.reduce((acc, el) => {
-      if (el.name) acc[el.name] = false;
-      return acc;
-    }, {})
-  );
-
-  const [isChecked, setIsChecked] = useState(inputInitialChckedState);
-
+  const [isChecked, setIsChecked] = useState(isData);
   const handleInput = (e, name) => {
     setIsChecked((prev) => {
       const updateState = [...prev];
-      updateState[tabIndex] = {
-        ...updateState[tabIndex],
-        [name]: e.target.checked,
-      };
+      updateState[tabIndex] = Object.keys(updateState[tabIndex]).reduce(
+        (acc, key) => {
+          acc[key] = key === name; // 선택된 라디오 버튼만 true로 설정
+          return acc;
+        },
+        {}
+      );
       return updateState;
     });
   };
 
-  //   useState(() => {
-  //     setIsChecked(prev => );
-  //   }, []);
-
   useEffect(() => {
-    if (setIsData)
-      setIsData((prev) => ({ ...prev, [tabIndex]: isChecked[tabIndex] }));
+    if (setIsData && isChecked)
+      setIsData((prev) => {
+        const updateState = [...prev];
+        updateState[tabIndex] = isChecked[tabIndex];
+        return updateState;
+      });
   }, [isChecked, setIsData, tabIndex]);
 
   return (
     <RadioBox
       {...props}
       tabIndex={tabIndex}
-      isChecked={isChecked}
+      isChecked={isChecked[tabIndex]}
       handleInput={handleInput}
     />
   );
