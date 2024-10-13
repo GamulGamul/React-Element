@@ -96,7 +96,6 @@ const SwiperTab = (props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {console.log(props.data[props.tabIndex]?.content)}
       <div className="container">{props.data[props.tabIndex]?.content}</div>
     </SSwiperTab>
   );

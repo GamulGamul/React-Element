@@ -1,10 +1,14 @@
 const RadioBox = (props) => {
   return (
     <div>
-      {props.data.map((el) => (
+      {props.data[props.tabIndex]?.map((el) => (
         <label key={el.label}>
-          <p>{el.label}</p>
-          <input type="checkbox" />
+          <span>{el.label}</span>
+          <input
+            type="checkbox"
+            checked={props.isChecked[props.tabIndex][el.name] || false}
+            onChange={(e) => props.handleInput(e, el.name)}
+          />
         </label>
       ))}
     </div>

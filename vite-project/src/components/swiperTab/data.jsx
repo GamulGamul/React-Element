@@ -1,27 +1,220 @@
+export const data = [
+  [
+    //요금제
+    {
+      label: "5천원 미만",
+      name: "payment-1",
+      min: 0,
+      max: 5000,
+    },
+    {
+      label: "5,000~10,000원",
+      name: "payment-2",
+      min: 5000,
+      max: 10000,
+    },
+    {
+      label: "10,000~20,000원 이하",
+      name: "payment-3",
+      min: 10000,
+      max: 20000,
+    },
+    {
+      label: "20,000~30,000원 이하",
+      name: "payment-4",
+      min: 20000,
+      max: 30000,
+    },
+    {
+      label: "30000만원 이상",
+      name: "payment-5",
+      min: 30000,
+      max: Infinity,
+    },
+  ],
+
+  [
+    //데이터량
+    {
+      label: "1GB 이하",
+      name: "amount-1",
+      min: 0,
+      max: 1,
+    },
+    {
+      label: "1~7GB 이하",
+      name: "amount-2",
+      min: 1,
+      max: 7,
+    },
+    {
+      label: "7~15GB 이하",
+      name: "amount-3",
+      min: 7,
+      max: 15,
+    },
+    {
+      label: "15~71GB 이하",
+      name: "amount-4",
+      min: 15,
+      max: 71,
+    },
+    {
+      label: "71~100GB 이하",
+      name: "amount-5",
+      min: 71,
+      max: 100,
+    },
+  ],
+
+  [
+    //통신망
+    {
+      label: "SKT",
+      name: "communication-1",
+    },
+    {
+      label: "KT",
+      name: "communication-2",
+    },
+    {
+      label: "LG U+",
+      name: "communication-3",
+    },
+  ],
+
+  [
+    //5G/LTE
+    {
+      label: "5G",
+      name: "lte5g-1",
+    },
+    {
+      label: "LTE",
+      name: "lte5g-2",
+    },
+  ],
+
+  [
+    //통신사
+    {
+      label: "KT M 모바일",
+      name: "newsAgency-1",
+    },
+    {
+      label: "LG U+ 모바일",
+      name: "newsAgency-2",
+    },
+    {
+      label: "프리티",
+      name: "newsAgency-3",
+    },
+    {
+      label: "LG U+ 헬로모바일",
+      name: "newsAgency-4",
+    },
+    {
+      label: "SK 7mobile",
+      name: "newsAgency-5",
+    },
+    {
+      label: "KB리브 모바일",
+      name: "newsAgency-6",
+    },
+    {
+      label: "KT스카이라이프",
+      name: "newsAgency-7",
+    },
+    {
+      label: "엔텔레콤",
+      name: "newsAgency-8",
+    },
+    {
+      label: "모빙(mobing)",
+      name: "newsAgency-9",
+    },
+    {
+      label: "핀다이렉트",
+      name: "newsAgency-10",
+    },
+    {
+      label: "마이알뜰폰",
+      name: "newsAgency-11",
+    },
+    {
+      label: "A모바일",
+      name: "newsAgency-12",
+    },
+    {
+      label: "이지모바일",
+      name: "newsAgency-13",
+    },
+    {
+      label: "KG모바일 알뜰폰",
+      name: "newsAgency-14",
+    },
+    {
+      label: "고고모바일",
+      name: "newsAgency-15",
+    },
+    {
+      label: "SMT",
+      name: "newsAgency-16",
+    },
+    {
+      label: "위너스텔",
+      name: "newsAgency-17",
+    },
+    {
+      label: "이야기모바일",
+      name: "newsAgency-18",
+    },
+    {
+      label: "스노우맨",
+      name: "newsAgency-19",
+    },
+    {
+      label: "토스모바일",
+      name: "newsAgency-20",
+    },
+    {
+      label: "한패스모바일",
+      name: "newsAgency-21",
+    },
+  ],
+];
+
+//------------------------------------------------
+
 export const paymentSystemData = [
   //요금제
   {
     label: "5천원 미만",
+    name: "payment-1",
     min: 0,
     max: 5000,
   },
   {
     label: "5,000~10,000원",
+    name: "payment-2",
     min: 5000,
     max: 10000,
   },
   {
     label: "10,000~20,000원 이하",
+    name: "payment-3",
     min: 10000,
     max: 20000,
   },
   {
     label: "20,000~30,000원 이하",
+    name: "payment-4",
     min: 20000,
     max: 30000,
   },
   {
-    label: "30,000원 이상",
+    label: "30000만원 이상",
+    name: "payment-5",
     min: 30000,
     max: Infinity,
   },
@@ -31,26 +224,31 @@ export const amountOfData = [
   //데이터량
   {
     label: "1GB 이하",
+    name: "amount-1",
     min: 0,
     max: 1,
   },
   {
     label: "1~7GB 이하",
+    name: "amount-2",
     min: 1,
     max: 7,
   },
   {
     label: "7~15GB 이하",
+    name: "amount-3",
     min: 7,
     max: 15,
   },
   {
     label: "15~71GB 이하",
+    name: "amount-4",
     min: 15,
     max: 71,
   },
   {
     label: "71~100GB 이하",
+    name: "amount-5",
     min: 71,
     max: 100,
   },
@@ -60,114 +258,114 @@ export const communicationNetworkData = [
   //통신망
   {
     label: "SKT",
-    data: "SKT",
+    name: "communication-1",
   },
   {
     label: "KT",
-    data: "KT",
+    name: "communication-2",
   },
   {
     label: "LG U+",
-    data: "LG U+",
+    name: "communication-3",
   },
 ];
 
-export const Lte5gData = [
+export const lte5gData = [
   //5G/LTE
   {
     label: "5G",
-    data: "5G",
+    name: "lte5g-1",
   },
   {
     label: "LTE",
-    data: "LTE",
+    name: "lte5g-2",
   },
 ];
 
-export const NewsAgencyData = [
+export const newsAgencyData = [
   //통신사
   {
     label: "KT M 모바일",
-    data: "KT M 모바일",
+    name: "newsAgency-1",
   },
   {
     label: "LG U+ 모바일",
-    data: "LG U+ 모바일",
+    name: "newsAgency-2",
   },
   {
     label: "프리티",
-    data: "프리티",
+    name: "newsAgency-3",
   },
   {
     label: "LG U+ 헬로모바일",
-    data: "LG U+ 헬로모바일",
+    name: "newsAgency-4",
   },
   {
     label: "SK 7mobile",
-    data: "SK 7mobile",
+    name: "newsAgency-5",
   },
   {
     label: "KB리브 모바일",
-    data: "KB리브 모바일",
+    name: "newsAgency-6",
   },
   {
     label: "KT스카이라이프",
-    data: "KT스카이라이프",
+    name: "newsAgency-7",
   },
   {
     label: "엔텔레콤",
-    data: "엔텔레콤",
+    name: "newsAgency-8",
   },
   {
     label: "모빙(mobing)",
-    data: "모빙(mobing)",
+    name: "newsAgency-9",
   },
   {
     label: "핀다이렉트",
-    data: "핀다이렉트",
+    name: "newsAgency-10",
   },
   {
     label: "마이알뜰폰",
-    data: "마이알뜰폰",
+    name: "newsAgency-11",
   },
   {
     label: "A모바일",
-    data: "A모바일",
+    name: "newsAgency-12",
   },
   {
     label: "이지모바일",
-    data: "이지모바일",
+    name: "newsAgency-13",
   },
   {
     label: "KG모바일 알뜰폰",
-    data: "KG모바일 알뜰폰",
+    name: "newsAgency-14",
   },
   {
     label: "고고모바일",
-    data: "고고모바일",
+    name: "newsAgency-15",
   },
   {
     label: "SMT",
-    data: "SMT",
+    name: "newsAgency-16",
   },
   {
     label: "위너스텔",
-    data: "위너스텔",
+    name: "newsAgency-17",
   },
   {
     label: "이야기모바일",
-    data: "이야기모바일",
+    name: "newsAgency-18",
   },
   {
     label: "스노우맨",
-    data: "스노우맨",
+    name: "newsAgency-19",
   },
   {
     label: "토스모바일",
-    data: "토스모바일",
+    name: "newsAgency-20",
   },
   {
     label: "한패스모바일",
-    data: "한패스모바일",
+    name: "newsAgency-21",
   },
 ];
