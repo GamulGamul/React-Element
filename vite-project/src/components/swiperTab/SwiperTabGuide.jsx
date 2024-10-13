@@ -30,17 +30,18 @@ const SwiperTabGuide = () => {
     },
   ];
 
-  const defaultData = data.map((el) =>
-    el.reduce((acc, el) => {
-      if (el.name) acc[el.name] = false;
-      return acc;
-    }, {})
-  );
+  // const defaultData = data.map((el) =>
+  //   el.reduce((acc, el) => {
+  //     if (el.name) acc[el.name] = false;
+  //     return acc;
+  //   }, {})
+  // );
 
   const [isData, setIsData] = useState([]); //data
   const [tabIndex, setTabIndex] = useState(null); //tab
+  const [isTruty, setIsTruety] = useState();
 
-  const handleSetTabIndex = (index) => setTabIndex(index); //tab
+  const handleSetTabIndex = (index) => setTabIndex(index); //tabHandler
 
   const handleReset = () => {
     //reset
@@ -59,13 +60,14 @@ const SwiperTabGuide = () => {
     //isData[3] 5G/LTE,
     //isData[4] 통신사,
     const trueItem = isData.map((items) => items.filter((item) => item.state));
+    setIsTruety(trueItem);
     console.log({
       data: isData,
       selectTabData: isData[tabIndex] || null,
       trueItem,
     });
   }, [isData, tabIndex]);
-
+  // console.log(isTruty);
   return (
     <>
       <button
@@ -82,6 +84,7 @@ const SwiperTabGuide = () => {
           handleReset={handleReset}
           handleSetTabIndex={handleSetTabIndex}
           setIsData={setIsData}
+          isTruty={isTruty}
         />
       </RateContext.Provider>
     </>

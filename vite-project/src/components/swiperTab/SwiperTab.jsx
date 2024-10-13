@@ -92,6 +92,7 @@ const SwiperTab = (props) => {
               onClick={(e) => handleButtonClick(i, e)}
             >
               {el.title}
+              <span>{props.isTruty && props.isTruty[i].length}</span>
             </a>
           </SwiperSlide>
         ))}
