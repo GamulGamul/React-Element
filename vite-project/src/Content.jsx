@@ -26,6 +26,7 @@ import RemittanceList from "./components/remittance/RemittanceList";
 import RemittanceGuide from "./components/remittance/RemittanceGuide";
 import SwiperTabGuide from "./components/swiperTab/SwiperTabGuide";
 import SwiperTab from "./components/swiperTab/SwiperTab";
+import InputToLocaleString from "./components/inputtolocalestring/InputToLocaleString";
 
 const ContentWrap = styled.div`
   display: flex;
@@ -108,6 +109,7 @@ const Content = () => {
 
   return (
     <ContentWrap>
+      <InputToLocaleString />
       <h2>swiperTabPopup</h2>
       <SwiperTabGuide />
       <h2>swiperTab</h2>
