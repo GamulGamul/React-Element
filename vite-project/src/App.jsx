@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SlideData from "./components/slide/SlideData";
 import PublishLayout from "./components/publish/PublishLayout";
 import { PublishingGuideMenu } from "./components/publish/PublishingMenuList";
+import HeightMoreContent from "./components/heightMoreContent/HeightMoreContent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Content />} />
           <Route path="/slide" element={<SlideData />} />
           <Route path="/guide" element={<PublishLayout />} />
+          <Route path="/morecontent" element={<HeightMoreContent />} />
           <Route element={<PublishLayout />}>
             {PublishingGuideMenu.map((item) => {
               return (
