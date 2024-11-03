@@ -6,6 +6,7 @@ import SlideData from "./components/slide/SlideData";
 import PublishLayout from "./components/publish/PublishLayout";
 import { PublishingGuideMenu } from "./components/publish/PublishingMenuList";
 import HeightMoreContent from "./components/heightMoreContent/HeightMoreContent";
+import TabSlide from "./components/tabslide/TabSlide";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/slide" element={<SlideData />} />
           <Route path="/guide" element={<PublishLayout />} />
           <Route path="/morecontent" element={<HeightMoreContent />} />
+          <Route path="/tabslide" element={<TabSlide />} />
           <Route element={<PublishLayout />}>
             {PublishingGuideMenu.map((item) => {
               return (
