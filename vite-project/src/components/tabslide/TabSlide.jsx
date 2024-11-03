@@ -8,6 +8,29 @@ import {
   scroller,
 } from "react-scroll";
 
+const tabContentData = [
+  {
+    title: "1첫번째",
+    desc: "내용",
+  },
+  {
+    title: "2첫번째",
+    desc: "내용",
+  },
+  {
+    title: "3첫번째",
+    desc: "내용",
+  },
+  {
+    title: "4첫번째",
+    desc: "내용",
+  },
+  {
+    title: "5첫번째",
+    desc: "내용",
+  },
+];
+
 const TabSlide = () => {
   return (
     <div>
@@ -32,50 +55,18 @@ const TabSlide = () => {
 
       {/* 탭 섹션 */}
       <div className="tab-content">
-        <Element
-          name="section1"
-          className="tab-section"
-          style={{ height: "500px" }}
-        >
-          <h2>첫번째 섹션</h2>
-          <p>여기에 첫번째 섹션 내용이 들어갑니다.</p>
-        </Element>
-
-        <Element
-          name="section2"
-          className="tab-section"
-          style={{ height: "500px" }}
-        >
-          <h2>두번째 섹션</h2>
-          <p>여기에 두번째 섹션 내용이 들어갑니다.</p>
-        </Element>
-
-        <Element
-          name="section3"
-          className="tab-section"
-          style={{ height: "500px" }}
-        >
-          <h2>세번째 섹션</h2>
-          <p>여기에 세번째 섹션 내용이 들어갑니다.</p>
-        </Element>
-
-        <Element
-          name="section4"
-          className="tab-section"
-          style={{ height: "500px" }}
-        >
-          <h2>네번째 섹션</h2>
-          <p>여기에 네번째 섹션 내용이 들어갑니다.</p>
-        </Element>
-
-        <Element
-          name="section5"
-          className="tab-section"
-          style={{ height: "500px" }}
-        >
-          <h2>다섯번째 섹션</h2>
-          <p>여기에 다섯번째 섹션 내용이 들어갑니다.</p>
-        </Element>
+        {tabContentData.map((el, i) => (
+          <>
+            <Element
+              name={`section${i + 1}`}
+              className="tab-section"
+              style={{ height: "500px" }}
+            >
+              <h2>{el.title}</h2>
+              <p>{el.desc}</p>
+            </Element>
+          </>
+        ))}
       </div>
     </div>
   );
