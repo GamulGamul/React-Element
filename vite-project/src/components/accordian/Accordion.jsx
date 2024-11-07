@@ -1,24 +1,35 @@
-import { useState } from "react";
-import classnames from "classnames";
+import { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 
-const Accordion = ({ list }) => {
+const SAccordion = styled.div`
+  .content-wrap {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+`;
+
+const Accordion = ({ list, isOpen, onToggle }) => {
   const { title, content } = list;
+  const contentRef = useRef(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.style.maxHeight = isOpen
+        ? `${contentRef.current.scrollHeight}px`
+        : "0px";
+    }
+  }, [isOpen]);
 
   return (
-    <div>
-      {/* 버튼내 내용이없다면 aria-label="내용" 추가 */}
-      <button onClick={toggleAccordion} aria-expanded={isOpen}>
+    <SAccordion>
+      <button onClick={onToggle} aria-expanded={isOpen}>
         {title}
       </button>
-      {isOpen && <div>{content}</div>}
-    </div>
+      <div className="content-wrap" ref={contentRef}>
+        {content}
+      </div>
+    </SAccordion>
   );
 };
 
